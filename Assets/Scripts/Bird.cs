@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class Bird : MonoBehaviour
 {
     public float force;
@@ -11,11 +12,15 @@ public class Bird : MonoBehaviour
     public int score;
     public Text scoreText;
 
+    public GameObject restartButton;
+
     void Start()
     {
         Time.timeScale = 1;
         score = 0;
         rb = GetComponent<Rigidbody2D>();
+
+        restartButton.SetActive(false);
     }
 
     void Update()
@@ -33,6 +38,8 @@ public class Bird : MonoBehaviour
         {
             Destroy(gameObject);
             Time.timeScale = 0;
+
+            restartButton.SetActive(true);
         }
 
         if(collision.tag == "Score")
@@ -40,4 +47,6 @@ public class Bird : MonoBehaviour
             score++;
         }
     }
+
+    
 }
